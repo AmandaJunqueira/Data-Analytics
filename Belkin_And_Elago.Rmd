@@ -1,0 +1,106 @@
+---
+output: html_document
+theme: cerulean
+---
+<center>
+![much-bigger image](data/image2.png) 
+</center>
+<div style ="text-align: justify">
+
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(plyr)
+library(dplyr)
+library(pandocfilters)
+#read data
+surveyData <- read.csv("data/surveyBelkinElago.csv", sep = ";", dec = ",")
+
+#Revaluing "No Response"
+surveyData$brand <- revalue(surveyData$brand, c(" "="No Response"))
+
+surveyData <- subset(surveyData,brand != "No Response")
+
+```
+
+ <p style="font-family: times, serif; font-size:20pt; font-style:italic">
+    This documents aims to give a general view towards the brand preference within iMarket's customers. 
+</p>
+
+<center>
+```{r, echo=FALSE}
+ggplot(surveyData, aes(brand)) + 
+  geom_bar(aes(fill = brand)) +
+  scale_fill_manual(values = c("brown", "bisque3")) + 
+  theme_bw() +
+  labs(title = "Brand Preference In Numbers", subtitle = "13% More Preference for Elago") +
+  geom_text(x = 1, y = 4852, label = "4652") +
+  geom_text(x = 2, y = 5530, label = "5348") + 
+  guides(fill=guide_legend(title=NULL)) +
+  scale_y_continuous(breaks=NULL) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(panel.grid.minor=element_blank(),
+        panel.grid.major=element_blank()) +
+  theme(plot.title = element_text(lineheight=.8, face="bold.italic", family="serif")) +
+  theme(plot.subtitle = element_text(lineheight=.4, face="italic", family="serif"))
+
+```
+</center>
+<p style="font-family: times, serif; font-size:20pt; font-style:italic">
+    The plot above shows us that there is a slightly bigger preference for Elago. 
+    The following graph gives us a clearer sight concerning which is the profile of those who prefer Elago:
+</p>
+<center>
+```{r, echo=FALSE}
+
+#Colorful Plot
+q <- ggplot(data=surveyData, aes(x=age, y= salary, colour = brand)) 
+q + geom_point(aes(colour=brand)) +
+  scale_color_manual(values = c("brown", "bisque3")) +
+  theme_bw() +
+  labs(title = "Visual Map Towards Preferences", subtitle = "How Age And Salary influence brand preference") +
+  guides(fill=guide_legend(title=NULL)) +
+  theme(panel.grid.minor=element_blank(),
+        panel.grid.major=element_blank()) +
+  theme(plot.title = element_text(lineheight=.8, face="bold")) +
+  theme(legend.title=element_blank()) +
+  scale_x_continuous(name="Age") +
+  scale_y_continuous(name="Salary") +
+  theme(plot.title = element_text(lineheight=.8, face="bold.italic", family="serif")) +
+  theme(plot.subtitle = element_text(lineheight=.4, face="italic", family="serif"))
+
+```
+</center>
+<p style="font-family: times, serif; font-size:20pt; font-style:italic">
+    From the visualisation above we can infer that:
+    For people < 50 years old: clear preference for Elago, speciaaly those with lower and higher income. Middle classes between 20-50 years old tend to prefer belkin.
+    For people > 51 years old: mostly Belkin preference without income correlation. 
+    The following graphic gives us a better insight into how age influence the brand preference:
+</p>
+<center>
+```{r, echo=FALSE}
+ggplot(surveyData, aes(age, fill = brand)) + 
+  geom_histogram(bins=250) + 
+  scale_fill_manual(values = c("brown", "bisque3")) +
+  theme_bw() +
+  labs(title = "Younger Customers Tend To Prefer Belkin") +
+  guides(fill=guide_legend(title=NULL)) +
+  theme(panel.grid.minor=element_blank(),
+        panel.grid.major=element_blank()) +
+  theme(plot.title = element_text(lineheight=.8, face="bold"))  +
+  theme(legend.title=element_blank()) +
+  scale_x_continuous(name="Age") +
+  scale_y_continuous(name="Count") +
+  theme(plot.title = element_text(lineheight=.8, face="bold.italic", family="serif")) +
+  theme(plot.subtitle = element_text(lineheight=.4, face="italic", family="serif"))
+```
+</center>
+
+<p style="font-family: times, serif; font-size:20pt; font-style:italic">
+
+   We found no relevant correlation between brand preference and region, educational level and car owned. Age and salary can slightly influence the customer's preference.
+   It is also important to mention that customers who refused to answer their brand preference were not taken into consideration. For better undertanding, we could build a predictive model that would predict the no responser's choice.
+   
+</p>
+
