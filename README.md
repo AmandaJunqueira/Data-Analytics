@@ -1,17 +1,12 @@
 # Data Analytics
 
-# Understanding Customers, Predicting Profitability, Predicting Consumer Preference and Market Basket Analysis
-
-# Applying data mining in e-commerce (e.g. profitability prediction, customer segmentation, product selection strategy)
-# Preprocessing data for data mining (e.g., applying filters, addressing missing data)
-# Using data mining tools and different classifiers (e.g., k-nearest neighbor, decision trees, support vector machines) to develop predictive models
-# Using the R statistical programming language
-# Using the caret package for R
-# Applying machine learning techniques to classification and regression problems
-# Optimizing classifiers by adjusting and testing classifier parameters
-# Applying cross-validation methods
-# Assessing the predictive performance of classifiers by examining key error metrics
-# Comparing and selecting different predictive models
-# Applying predictive models to test sets
-# Presenting data mining results to management
-# GGPLOT
+Using data mining tools to investigate patterns in complex data sets
+Preprocessing data for data mining (e.g., transforming numeric values to nominal values, discretizing data)
+Using decision tree classifiers to investigate classification and regression problems
+Applying cross-validation methods
+Interpreting and drawing inferences from the results of data mining
+Assessing the predictive performance of classifiers by examining key error metrics
+Identifying where learning methods fail and gain insight into why with error analysis
+Drawing relationships between learner performance and measured features to help understand model performance
+Conducting feature selection to investigate the correlation between different features in a dataset
+Presenting data mining results to management
