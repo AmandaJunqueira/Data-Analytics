@@ -1,3 +1,3 @@
 # Data Analytics
 
-Understanding Customers and Predicting Profitability 
+Understanding Customers, Predicting Profitability, Predicting Consumer Preference and Market Basket Analysis
